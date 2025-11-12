@@ -1,6 +1,7 @@
 import numpy as np
 import streamlit as st
 import pickle
+import time
 
 # Load model and scaler
 model = pickle.load(open("model.pkl", "rb"))
@@ -34,14 +35,21 @@ if st.button("🔮 Predict Flower Species", type="primary"):
         # Create feature array
         features = np.array([[sepal_length, sepal_width, petal_length, petal_width]])
 
-        # Scale features (this line is essential)
+        # Scale features
         scaled_features = scaler.transform(features)
 
         # Predict
         prediction = model.predict(scaled_features)[0]
 
         st.success(f"🌼 The Flower Species is: **{prediction}**")
-        st.snow()
+
+        # 👻 Ghost animation (instead of snow)
+        ghost_placeholder = st.empty()
+        for i in range(10):
+            ghost_placeholder.markdown(f"<h1 style='text-align:center;'>👻</h1>", unsafe_allow_html=True)
+            time.sleep(0.2)
+            ghost_placeholder.empty()
+            time.sleep(0.1)
 
     except Exception as e:
         st.error(f"Error occurred: {e}")
