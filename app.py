@@ -70,7 +70,7 @@ if st.button("🔮 Predict Flower Species", type="primary"):
         st.success(f"**The Flower Species is: {prediction}**")
         
         # Add some visual feedback
-        st.balloons()
+        st.snow()
         
     except Exception as e:
         st.error(f"Error occurred: {e}")
